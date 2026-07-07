@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advit Umesh Nayak — Software Engineer & AI Builder</title>
+<meta name="description" content="Portfolio of Advit Umesh Nayak — AI Enthusiast, Software Engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040404;
+  --bg-2:#0a0710;
+  --violet:#7B2FFF;
+  --purple:#A855F7;
+  --indigo:#8B5CF6;
+  --blue:#2563EB;
+  --cyan:#38BDF8;
+  --text:#EDEBFA;
+  --dim:#8B87A6;
+  --glass:rgba(255,255,255,0.04);
+  --glass-brd:rgba(255,255,255,0.08);
+  --radius:20px;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  cursor:none;
+  min-height:100vh;
+  position:relative;
+}
+@media (max-width:900px){ body{cursor:auto;} }
+::selection{background:var(--violet);color:#fff;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+/* ---------- background layers ---------- */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(123,47,255,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(123,47,255,0.06) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 50% at 50% 0%, #000 40%, transparent 100%);
+  animation:gridshift 30s linear infinite;
+}
+@keyframes gridshift{0%{background-position:0 0,0 0;}100%{background-position:56px 56px,56px 56px;}}
+.aurora{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55;
+  background:
+    radial-gradient(600px circle at 15% 20%, rgba(123,47,255,0.18), transparent 60%),
+    radial-gradient(700px circle at 85% 15%, rgba(56,189,248,0.14), transparent 60%),
+    radial-gradient(800px circle at 50% 90%, rgba(168,85,247,0.12), transparent 60%);
+  animation:auroraMove 18s ease-in-out infinite alternate;
+}
+@keyframes auroraMove{0%{transform:translate(0,0) scale(1);}100%{transform:translate(2%,-3%) scale(1.05);}}
+
+.cursor-glow{
+  position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(123,47,255,0.10),transparent 70%);
+  transform:translate(-50%,-50%);
+  transition:opacity .3s;
+}
+.cursor-dot{
+  position:fixed;width:8px;height:8px;border-radius:50%;background:var(--cyan);
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  box-shadow:0 0 12px 2px var(--cyan);
+  transition:width .15s,height .15s,background .15s;
+}
+.cursor-ring{
+  position:fixed;width:34px;height:34px;border-radius:50%;border:1px solid rgba(168,85,247,0.6);
+  pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .12s ease-out,opacity .2s;
+}
+@media (max-width:900px){.cursor-glow,.cursor-dot,.cursor-ring{display:none;}}
+
+/* ---------- glass utility ---------- */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-brd);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+
+/* ---------- top nav ---------- */
+header{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;
+  width:min(1100px,92%);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;border-radius:999px;
+}
+.logo{font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:0.5px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+nav.links{display:flex;gap:26px;font-size:14px;color:var(--dim);}
+nav.links a{transition:color .25s;position:relative;}
+nav.links a:hover{color:var(--text);}
+.nav-actions{display:flex;align-items:center;gap:10px;}
+.kbd{
+  font-family:var(--font-mono);font-size:11px;color:var(--dim);
+  border:1px solid var(--glass-brd);padding:4px 8px;border-radius:8px;background:rgba(255,255,255,0.03);
+}
+.btn{
+  font-family:var(--font-body);font-weight:600;font-size:13.5px;padding:10px 18px;border-radius:999px;
+  border:1px solid var(--glass-brd);cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{
+  background:linear-gradient(90deg,var(--violet),var(--blue));border:none;color:#fff;
+  box-shadow:0 0 20px rgba(123,47,255,0.45);
+}
+.btn-primary:hover{box-shadow:0 0 32px rgba(123,47,255,0.75);transform:translateY(-2px);}
+.btn-ghost{color:var(--text);background:rgba(255,255,255,0.02);}
+.btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:rgba(168,85,247,0.5);}
+@media (max-width:900px){nav.links{display:none;}}
+
+/* ---------- command palette ---------- */
+.cmdk-overlay{
+  position:fixed;inset:0;background:rgba(4,4,4,0.7);backdrop-filter:blur(6px);z-index:500;
+  display:none;align-items:flex-start;justify-content:center;padding-top:12vh;
+}
+.cmdk-overlay.open{display:flex;}
+.cmdk-box{width:min(560px,90%);border-radius:16px;overflow:hidden;}
+.cmdk-input{width:100%;padding:18px 20px;background:transparent;border:none;border-bottom:1px solid var(--glass-brd);
+  color:var(--text);font-family:var(--font-mono);font-size:15px;outline:none;}
+.cmdk-list{max-height:320px;overflow-y:auto;}
+.cmdk-item{padding:13px 20px;font-size:14px;color:var(--dim);cursor:pointer;display:flex;justify-content:space-between;}
+.cmdk-item:hover,.cmdk-item.active{background:rgba(123,47,255,0.12);color:var(--text);}
+
+/* ---------- section base ---------- */
+section{position:relative;z-index:2;padding:120px 6vw 80px;max-width:1280px;margin:0 auto;}
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 6vw;
+  right: 6vw;
+  height: 1px;
+  background: linear-gradient(90deg, var(--glass-brd) 0%, rgba(255, 255, 255, 0.02) 80%, transparent 100%);
+}
+section.hero::before {
+  display: none;
+}
+.eyebrow{
+  font-family:var(--font-mono);font-size:18px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);
+  display:flex;align-items:center;gap:14px;margin-bottom:24px;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+.eyebrow::before{content:'';width:40px;height:3px;background:var(--cyan);display:inline-block;box-shadow: 0 0 10px var(--cyan);}
+h2.section-title{
+  font-family:var(--font-display);
+  font-size:clamp(44px, 7vw, 72px);
+  font-weight:900;
+  margin-bottom:52px;
+  max-width:900px;
+  line-height:1.05;
+  background: linear-gradient(135deg, #ffffff 70%, rgba(255,255,255,0.45) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -1.5px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:140px;position:relative;
+}
+.hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;}
+@media (max-width:960px){.hero-inner{grid-template-columns:1fr;}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:13px;color:var(--purple);letter-spacing:1.5px;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.dot-live{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1.hero-title{
+  font-family:var(--font-display);font-weight:700;font-size:clamp(42px,7vw,84px);line-height:1.03;letter-spacing:-1.5px;
+}
+h1.hero-title .grad{
+  background:linear-gradient(100deg,var(--purple),var(--cyan) 60%);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-role{
+  font-family:var(--font-mono);font-size:clamp(16px,2vw,22px);color:var(--dim);margin-top:22px;height:32px;
+}
+.hero-role .cursor-blink{display:inline-block;width:2px;background:var(--cyan);margin-left:2px;animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero-desc{color:var(--dim);max-width:520px;margin-top:24px;font-size:15.5px;line-height:1.7;}
+.hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+
+/* orbit visual */
+.orbit-wrap{position:relative;height:550px;display:flex;align-items:center;justify-content:center;}
+.planet-avatar-wrap {
+  width: 340px;
+  height: 340px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  animation: floatAvatar 6s ease-in-out infinite;
+}
+.planet-avatar-wrap:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+.avatar-img-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  border: 2px solid rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 30px rgba(123, 47, 255, 0.3);
+}
+.planet-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.48);
+  transform-origin: center 25%;
+}
+.avatar-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--violet), var(--purple), var(--cyan), var(--violet));
+  z-index: 1;
+  opacity: 0.75;
+  filter: blur(12px);
+  animation: rotateGlow 8s linear infinite;
+}
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-12px) scale(1.02); }
+}
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.ring{position:absolute;border:1px solid rgba(168,85,247,0.35);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ring1{width:320px;height:320px;animation:spin 22s linear infinite;}
+.ring2{width:430px;height:430px;animation:spin 34s linear infinite reverse;}
+.ring3{width:530px;height:530px;animation:spin 48s linear infinite;border-style:dashed;opacity:.5;}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(360deg);}}
+.sat{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);animation:spin linear infinite;}
+.sat span{
+  position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+  width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:11px;font-weight:600;color:#fff;
+}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
+.about-text p{color:var(--dim);line-height:1.8;font-size:15.5px;margin-bottom:16px;}
+.about-facts{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:14px;}
+.about-facts div span{display:block;color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.stat-card{padding:26px;border-radius:16px;text-align:left;}
+.stat-num{font-family:var(--font-display);font-size:38px;font-weight:700;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat-label{color:var(--dim);font-size:13px;margin-top:6px;}
+
+/* ---------- skills ---------- */
+.skill-cat{margin-bottom:34px;}
+.skill-cat h3{font-family:var(--font-mono);font-size:13px;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.skill-row{display:flex;flex-wrap:wrap;gap:12px;}
+.skill-chip{
+  padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:500;position:relative;transition:all .3s;
+}
+.skill-chip:hover{transform:translateY(-4px);border-color:rgba(168,85,247,0.7);box-shadow:0 8px 24px rgba(123,47,255,0.3);}
+
+/* ---------- projects ---------- */
+.project-card{
+  border-radius:24px;padding:34px;margin-bottom:26px;position:relative;overflow:hidden;
+  transition:transform .35s,box-shadow .35s;
+}
+.project-card::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;
+  background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%), rgba(123,47,255,0.14), transparent 60%);
+}
+.project-card:hover::before{opacity:1;}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.project-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;}
+.project-title{font-family:var(--font-display);font-size:24px;font-weight:600;}
+.project-desc{color:var(--dim);margin-top:10px;font-size:14.5px;max-width:640px;line-height:1.7;}
+.metric-row{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap;}
+.metric{font-family:var(--font-mono);}
+.metric b{display:block;font-size:20px;color:var(--cyan);}
+.metric span{font-size:11.5px;color:var(--dim);}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;}
+.badge{font-family:var(--font-mono);font-size:11.5px;padding:5px 11px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid var(--glass-brd);color:var(--dim);}
+.project-links{display:flex;gap:10px;margin-top:22px;}
+.project-links a{font-size:13px;padding:8px 14px;border-radius:8px;border:1px solid var(--glass-brd);}
+.project-links a:hover{border-color:rgba(56,189,248,0.6);color:var(--cyan);}
+
+/* ---------- timeline ---------- */
+.timeline{position:relative;padding-left:34px;}
+.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--violet),var(--cyan));}
+.tl-item{position:relative;padding-bottom:36px;}
+.tl-item::before{content:'';position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);}
+.tl-role{font-family:var(--font-display);font-size:19px;font-weight:600;}
+.tl-org{color:var(--purple);font-size:14px;margin-top:2px;}
+.tl-desc{color:var(--dim);font-size:14px;margin-top:8px;max-width:600px;line-height:1.7;}
+
+/* ---------- cert/achieve grid ---------- */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;justify-content:center;}
+.cert-card,.trophy-card{border-radius:18px;padding:24px;text-align:center;transition:.3s;display:flex;flex-direction:column;justify-content:space-between;align-items:center;min-height:200px;}
+.cert-card:hover,.trophy-card:hover{transform:translateY(-5px);border-color:rgba(168,85,247,.6);}
+.cert-icon,.trophy-icon{font-size:30px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;}
+.cert-icon img,.cert-icon svg{width:52px;height:52px;object-fit:contain;}
+.cert-name,.trophy-name{font-weight:600;font-size:14.5px;}
+.cert-org,.trophy-org{color:var(--dim);font-size:12.5px;margin-top:4px;}
+.cert-top{display:flex;flex-direction:column;align-items:center;}
+
+/* ---------- tech stack grid ---------- */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+  margin-bottom: 32px;
+}
+.skill-card {
+  border-radius: 16px;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  min-height: 106px;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  border: 1px solid var(--glass-brd);
+}
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.18);
+}
+.skill-card svg, .skill-card img {
+  width: 34px;
+  height: 34px;
+  transition: transform 0.3s;
+}
+.skill-card:hover svg, .skill-card:hover img {
+  transform: scale(1.12);
+}
+.skill-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+.skill-cat h3 {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--purple);
+  margin-bottom: 14px;
+  margin-top: 28px;
+}
+
+/* ---------- github ---------- */
+.gh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media (max-width:800px){.gh-grid{grid-template-columns:1fr 1fr;}}
+.gh-card{padding:22px;border-radius:16px;text-align:center;}
+.gh-num{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--cyan);}
+.gh-label{font-size:12px;color:var(--dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px;}
+.contrib-graph{display:flex;gap:3px;margin-top:26px;flex-wrap:wrap;}
+.contrib-cell{width:11px;height:11px;border-radius:3px;background:rgba(123,47,255,0.15);}
+
+/* ---------- contact ---------- */
+.contact-form-container {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  border: 1px solid var(--glass-brd);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.contact-form-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+.form-field{margin-bottom:18px;}
+.form-field label{font-size:12.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:8px;}
+.form-field input,.form-field textarea{
+  width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid var(--glass-brd);
+  color:var(--text);font-family:var(--font-body);font-size:14px;outline:none;transition:.25s;
+}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(123,47,255,0.15);}
+
+.contact-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.contact-link-card {
+  border-radius: 18px;
+  padding: 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  border: 1px solid var(--glass-brd);
+  cursor: pointer;
+}
+.contact-link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s;
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(168, 85, 247, 0.16), transparent 60%);
+}
+.contact-link-card:hover::before {
+  opacity: 1;
+}
+.contact-link-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(123, 47, 255, 0.28);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+.contact-link-card .card-icon {
+  font-size: 22px;
+  color: var(--cyan);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
+}
+.contact-link-card:hover .card-icon {
+  transform: scale(1.12) rotate(6deg);
+  background: rgba(168, 85, 247, 0.25);
+  color: #fff;
+}
+.contact-link-card .card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.contact-link-card .card-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--dim);
+}
+.contact-link-card .card-value {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+  word-break: break-all;
+}
+
+@media (max-width: 768px) {
+  .contact-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .contact-links-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- footer ---------- */
+footer{position:relative;z-index:2;padding:50px 6vw 34px;text-align:center;color:var(--dim);font-size:13px;}
+footer .flinks{display:flex;justify-content:center;gap:22px;margin-bottom:18px;}
+footer .flinks a:hover{color:var(--text);}
+
+/* scrollbar */
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-thumb{background:rgba(123,47,255,0.4);border-radius:8px;}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+}
+
+/* ---------- resume modal ---------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(4,4,4,0.85);backdrop-filter:blur(8px);z-index:600;
+  display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;
+}
+.modal-overlay.open{display:flex;opacity:1;}
+.modal-box{
+  width:min(900px,94%);height:86vh;border-radius:24px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,0.8);
+  transform:scale(0.9);transition:transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.open .modal-box{transform:scale(1);}
+.modal-header{
+  padding:16px 24px;border-bottom:1px solid var(--glass-brd);
+  display:flex;align-items:center;
+  background:rgba(255,255,255,0.02);
+}
+.modal-header h3{
+  font-family:var(--font-display);font-size:18px;font-weight:600;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.modal-close{
+  background:transparent;border:none;color:var(--dim);font-size:28px;cursor:pointer;
+  transition:color 0.2s;line-height:1;margin-left:auto;
+}
+.modal-close:hover{color:var(--text);}
+.modal-body{
+  flex:1;background:rgba(0,0,0,0.2);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.resume-iframe{
+  width:100%;height:100%;border:none;
+}
+.modal-footer{
+  padding:16px 24px;border-top:1px solid var(--glass-brd);
+  display:flex;justify-content:flex-end;gap:12px;
+  background:rgba(255,255,255,0.02);
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div class="grid-bg"></div>
+<div class="aurora"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<header class="glass">
+  <div class="logo">AUN</div>
+  <nav class="links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Internship</a>
+    <a href="#certs">Certs</a>
+    <a href="#github">GitHub</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="kbd" id="cmdkBtn" style="cursor:pointer;background:transparent;">⌘K</button>
+    <a class="btn btn-ghost" href="javascript:void(0)" onclick="openResumeModal()">Resume</a>
+  </div>
+</header>
+
+<div class="cmdk-overlay" id="cmdkOverlay">
+  <div class="cmdk-box glass">
+    <input class="cmdk-input" id="cmdkInput" placeholder="Jump to a section…" autocomplete="off">
+    <div class="cmdk-list" id="cmdkList"></div>
+  </div>
+</div>
+
+<!-- RESUME MODAL SHOWCASE -->
+<div class="modal-overlay" id="resumeModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Advit Umesh Nayak — Resume</h3>
+      <button class="modal-close" onclick="closeResumeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Advit%20Umesh%20Nayak%20.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Advit%20Umesh%20Nayak%20.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Advit%20Umesh%20Nayak%20.pdf" download="Advit_Umesh_Nayak_Resume.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATE MODAL SHOWCASE -->
+<div class="modal-overlay" id="certModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Advit Umesh Nayak — Internship Certificate</h3>
+      <button class="modal-close" onclick="closeCertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Advit%20Umesh%20Nayak-certificate.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Advit%20Umesh%20Nayak-certificate.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Advit%20Umesh%20Nayak-certificate.pdf" download="Advit_Umesh_Nayak_Internship_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOLVEATHON CERTIFICATE MODAL -->
+<div class="modal-overlay" id="solveathonModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Solve-A-Thon 1.0 — Finalist Certificate</h3>
+      <button class="modal-close" onclick="closeSolveathonModal()">&times;</button>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+      <img src="./Solve-A-Thon%201.0.jpeg" alt="Solve-A-Thon 1.0 Certificate" style="max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--glass-brd);">
+    </div>
+    <div class="modal-footer">
+      <a href="./Solve-A-Thon%201.0.jpeg" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Solve-A-Thon%201.0.jpeg" download="Solve_A_Thon_1_0_Certificate.jpeg" class="btn btn-primary">Download Image</a>
+    </div>
+  </div>
+</div>
+
+<!-- CHAKRAVYUHA CERTIFICATE MODAL -->
+<div class="modal-overlay" id="chakravyuhaModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Chakravyuha — Participation Certificate</h3>
+      <button class="modal-close" onclick="closeChakravyuhaModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Chakravyuha.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Chakravyuha.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Chakravyuha.pdf" download="Chakravyuha_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- ORACLE CERT MODAL -->
+<div class="modal-overlay" id="oracleCertModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Oracle Cloud Infrastructure 2025 — Generative AI Professional</h3>
+      <button class="modal-close" onclick="closeOracleCertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Oracle%20Cloud%20Infrastructure%202025%20Certified%20Generative%20AI%20Professional.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Oracle%20Cloud%20Infrastructure%202025%20Certified%20Generative%20AI%20Professional.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Oracle%20Cloud%20Infrastructure%202025%20Certified%20Generative%20AI%20Professional.pdf" download="Oracle_GenAI_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- DELOITTE CERT MODAL -->
+<div class="modal-overlay" id="deloitteCertModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Deloitte — Cyber Job Simulation Certificate</h3>
+      <button class="modal-close" onclick="closeDeloitteCertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./deloitte%20cybersecurity.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./deloitte%20cybersecurity.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./deloitte%20cybersecurity.pdf" download="Deloitte_Cyber_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- IBM CERT MODAL -->
+<div class="modal-overlay" id="ibmCertModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>IBM — Introduction to Software Engineering Certificate</h3>
+      <button class="modal-close" onclick="closeIbmCertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Introduction%20to%20Software%20Engineering.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Introduction%20to%20Software%20Engineering.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Introduction%20to%20Software%20Engineering.pdf" download="IBM_Software_Engineering_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- HACKERRANK CERT MODAL -->
+<div class="modal-overlay" id="hackerrankCertModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>HackerRank — Java (Basic) Certificate</h3>
+      <button class="modal-close" onclick="closeHackerrankCertModal()">&times;</button>
+    </div>
+    <div class="modal-body" style="text-align: center; padding: 20px;">
+      <img src="./Hackerank%20Java%20basics.png" alt="HackerRank Java Basic Certificate" style="max-width: 100%; max-height: 100%; height: auto; border-radius: 12px; border: 1px solid var(--glass-brd); object-fit: contain;">
+    </div>
+    <div class="modal-footer">
+      <a href="./Hackerank%20Java%20basics.png" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Hackerank%20Java%20basics.png" download="HackerRank_Java_Certificate.png" class="btn btn-primary">Download Image</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow reveal"><span class="dot-live"></span>AVAILABLE FOR INTERNSHIPS &amp; ENTRY ROLES</div>
+      <h1 class="hero-title reveal">Hi, I'm<br><span class="grad">Advit Umesh Nayak</span></h1>
+      <div class="hero-role reveal" id="rotatingRole">Computer Science Engineering Student<span class="cursor-blink">&nbsp;</span></div>
+      <p class="hero-desc reveal">I'm a Computer Science Engineering student passionate about building scalable software, AI-powered applications, and technology-driven products that solve real-world problems. My interests span software engineering, cloud computing, DevOps, and entrepreneurship. I enjoy transforming innovative ideas into impactful digital solutions while continuously learning and building for the future.</p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="javascript:void(0)" onclick="openResumeModal()" class="btn btn-ghost">Resume</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+    </div>
+    <div class="orbit-wrap reveal">
+      <div class="ring ring3"></div>
+      <div class="ring ring2"></div>
+      <div class="ring ring1"></div>
+      <div class="planet-avatar-wrap">
+        <div class="avatar-img-container">
+          <img src="./avatar.jpg" alt="Advit Umesh Nayak" class="planet-avatar">
+        </div>
+        <div class="avatar-glow"></div>
+      </div>
+      <div class="sat" style="animation-duration:22s;">
+        <span style="top:0;background:rgba(15,23,42,0.85);border:1px solid rgba(56,189,248,0.5);display:flex;align-items:center;justify-content:center;padding:0;width:40px;height:40px;border-radius:50%;box-shadow:0 0 12px rgba(56,189,248,0.3);">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: #3776ab;"><path d="M11.898 0C5.394 0 5.626 2.82 5.626 2.82l.006 2.916h5.834v.823H3.292S0 6.136 0 12.35c0 6.216 2.872 5.992 2.872 5.992h1.713v-2.417c0-2.61 2.213-2.678 2.213-2.678h5.275c2.611 0 2.872-2.186 2.872-2.186V5.45c0-2.612-2.181-2.92-2.181-2.92L11.898 0zm-2.83 1.63a.823.823 0 1 1 0 1.647.823.823 0 0 1 0-1.648zm2.934 22.37c6.504 0 6.272-2.82 6.272-2.82l-.006-2.916H12.434v-.823h8.174s3.292.424 3.292-5.79c0-6.216-2.872-5.992-2.872-5.992h-1.713v2.417c0 2.61-2.213 2.678-2.213 2.678h-5.275c-2.611 0-2.872 2.186-2.872 2.186V18.55c0 2.612 2.181 2.92 2.181 2.92l.983.899zm2.83-1.63a.823.823 0 1 1 0-1.647.823.823 0 0 1 0 1.648z"/></svg>
+        </span>
+      </div>
+      <div class="sat" style="animation-duration:22s;animation-delay:-7s;">
+        <span style="background:rgba(15,23,42,0.85);border:1px solid rgba(168,85,247,0.5);display:flex;align-items:center;justify-content:center;padding:0;width:40px;height:40px;border-radius:50%;box-shadow:0 0 12px rgba(168,85,247,0.3);">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: #007acc;"><path d="M23.986 6.57a1.512 1.512 0 0 0-.477-1.04l-3.326-2.906a1.543 1.543 0 0 0-1.782-.162l-8.243 4.278L2.73 1.543a.756.756 0 0 0-.895.077L.203 3.197a.754.754 0 0 0-.047 1.082l5.733 5.485L.156 15.25a.754.754 0 0 0 .047 1.082l1.632 1.577a.756.756 0 0 0 .895.077l7.432-5.198 8.243 4.278a1.543 1.543 0 0 0 1.782-.162l3.326-2.906a1.512 1.512 0 0 0 .477-1.04V7.61zm-13.82 4.417L3.923 7.1l6.243-3.887v7.774zm3.626-7.774l6.243 3.887-6.243 3.887V3.213z"/></svg>
+        </span>
+      </div>
+      <div class="sat" style="animation-duration:34s;animation-direction:reverse;">
+        <span style="background:rgba(15,23,42,0.85);border:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;padding:0;width:40px;height:40px;border-radius:50%;box-shadow:0 0 12px rgba(255,255,255,0.2);">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: #ffffff;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3.003-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </span>
+      </div>
+      <div class="sat" style="animation-duration:34s;animation-direction:reverse;animation-delay:-17s;">
+        <span style="background:rgba(15,23,42,0.85);border:1px solid rgba(245,192,16,0.5);display:flex;align-items:center;justify-content:center;padding:0;width:40px;height:40px;border-radius:50%;box-shadow:0 0 12px rgba(245,192,16,0.3);">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: #f5c010;"><path d="M22 14.355c0-.742-.601-1.346-1.34-1.346H10.676c-.675 0-1.222-.547-1.222-1.22 0-.675.547-1.222 1.222-1.222h9.983c.74 0 1.34-.604 1.34-1.346 0-.742-.6-1.347-1.34-1.347H10.676A3.914 3.914 0 0 0 6.76 11.79c0 2.16 1.753 3.912 3.915 3.912h9.984c.74 0 1.34-.604 1.34-1.347zM12.247 2.117c-.374 0-.743.151-1.012.42L2.42 11.352a1.431 1.431 0 0 0 0 2.022l8.815 8.815c.56.56 1.464.56 2.024 0l8.816-8.815a1.43 1.43 0 0 0 0-2.022L13.259 2.537a1.42 1.42 0 0 0-1.012-.42z"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="eyebrow reveal">About</div>
+  <h2 class="section-title reveal">Turning coursework into shipped software.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm passionate about building software that solves real-world problems using Software Engineering, AI, and modern web technologies.</p>
+      <p>Based in Karnataka, I'm currently completing my B.E. in Computer Science at Canara Engineering College. Outside coursework, I spend my time shipping side projects, competing in hackathons, and picking apart how production systems are built.</p>
+      <div class="about-facts">
+        <div><span>Location</span>Ankola, Karnataka, India</div>
+        <div><span>College Education</span>Canara Engineering College (Oct 2023 - Present)</div>
+        <div><span>CGPA</span>8.01 / 10</div>
+        <div><span>Pre-University</span>Siddhartha PU College<br><small style="color:var(--dim);font-size:11.5px;">PCM-CS &nbsp;·&nbsp; 2021–2023 &nbsp;·&nbsp; Percentage: 85.06%</small></div>
+        <div><span>Spoken Languages</span>English | Hindi | Kannada</div>
+        <div><span>Focus</span>Software Engineering</div>
+      </div>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat-card glass"><div class="stat-num" data-count="4">0</div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-card glass"><div class="stat-num" data-count="1">0</div><div class="stat-label">Internship</div></div>
+      <div class="stat-card glass"><div class="stat-num" data-count="2">0</div><div class="stat-label">Hackathons</div></div>
+      <div class="stat-card glass"><div class="stat-num" data-count="4">0</div><div class="stat-label">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="eyebrow reveal">Tech Stack</div>
+  <h2 class="section-title reveal">The tools I reach for.</h2>
+  <div class="reveal">
+    <div class="skill-cat">
+      <h3>Programming Languages</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java (OOP)">
+          <span class="skill-name">Java (OOP)</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+          <span class="skill-name">Python</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" alt="C">
+          <span class="skill-name">C</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Frontend</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML">
+          <span class="skill-name">HTML</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS">
+          <span class="skill-name">CSS</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
+          <span class="skill-name">JavaScript</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Backend</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js">
+          <span class="skill-name">Node.js</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" style="filter: invert(1);">
+          <span class="skill-name">Express</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask" style="filter: invert(1);">
+          <span class="skill-name">Flask</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Database</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">
+          <span class="skill-name">MySQL</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="SQLite">
+          <span class="skill-name">SQLite</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Tools</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">
+          <span class="skill-name">Git</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" style="filter: invert(1);">
+          <span class="skill-name">GitHub</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">
+          <span class="skill-name">VS Code</span>
+        </div>
+        <div class="skill-card glass">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-5-5z" fill="#4285F4"/>
+            <path d="M14 3v5h5l-5-5z" fill="#1A73E8"/>
+            <path d="M9 12h6v1.5H9V12zm0 3h6v1.5H9V15zm0-6h3v1.5H9V9z" fill="#FFF"/>
+          </svg>
+          <span class="skill-name">Google Docs</span>
+        </div>
+        <div class="skill-card glass">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color: #d83b01;"><path d="M2 5.5L10 2v20l-8-3.5V5.5zm10.5-.5L21 8.5v7l-8.5 3.5V5z"/></svg>
+          <span class="skill-name">MS Office</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>AI / ML</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0c0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12 0-6.627-5.373-12-12-12 6.627 0 12-5.373 12-12z" fill="url(#geminiGlow)"/>
+            <defs>
+              <linearGradient id="geminiGlow" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#9AD8FD"/>
+                <stop offset="0.5" stop-color="#7B2FFF"/>
+                <stop offset="1" stop-color="#FF8A00"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="skill-name">Google Gemini</span>
+        </div>
+        <div class="skill-card glass">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg" alt="OpenCV">
+          <span class="skill-name">OpenCV</span>
+        </div>
+        <div class="skill-card glass">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#EA4335"/>
+            <path d="M7 8h10v2H7V8zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" fill="#FFF"/>
+          </svg>
+          <span class="skill-name">PyPDF2</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Spoken Languages</h3>
+      <div class="skill-grid">
+        <div class="skill-card glass">
+          <span style="font-size: 26px; font-weight: 800; font-family: var(--font-display); background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; height: 34px; line-height: 34px;">ABC</span>
+          <span class="skill-name">English</span>
+        </div>
+        <div class="skill-card glass">
+          <span style="font-size: 26px; font-weight: 800; font-family: var(--font-display); background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; height: 34px; line-height: 34px;">अ आ इ</span>
+          <span class="skill-name">Hindi</span>
+        </div>
+        <div class="skill-card glass">
+          <span style="font-size: 26px; font-weight: 800; font-family: var(--font-display); background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; height: 34px; line-height: 34px;">ಅ ಆ ಇ</span>
+          <span class="skill-name">Kannada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="eyebrow reveal">Projects</div>
+  <h2 class="section-title reveal">Selected work.</h2>
+
+  <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
+    <div class="project-top">
+      <div><div class="project-title">Dual Attendance Tracker</div>
+      <div class="project-desc">A QR-code + face-recognition attendance system built to eliminate proxy attendance in classrooms, pairing OpenCV-based face matching with a QR fallback for speed.</div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><b>90%</b><span>less proxy attendance</span></div>
+      <div class="metric"><b>35–40%</b><span>accuracy improvement</span></div>
+      <div class="metric"><b>50%</b><span>faster check-in</span></div>
+    </div>
+    <div class="badge-row">
+      <span class="badge">Python</span><span class="badge">Java</span><span class="badge">OpenCV</span><span class="badge">QR</span><span class="badge">MySQL</span><span class="badge">SQLite</span>
+    </div>
+    <div class="project-links">
+      <a href="https://github.com/Advitnayak4311/Dual-Attendance-Tracking-with-QR-Code-Scanning-and-Facial-Recognition" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.76-1.604-2.665-.3-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23.96-.267 1.98-.399 3.003-.404 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
+    <div class="project-top">
+      <div><div class="project-title">Eco Awareness Bot</div>
+      <div class="project-desc">A Google Gemini-powered chatbot that answers sustainability questions in plain language, handling a wide range of environmental queries with fast, relevant lookups.</div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><b>100+</b><span>queries handled</span></div>
+      <div class="metric"><b>60%</b><span>higher engagement</span></div>
+      <div class="metric"><b>70%</b><span>faster lookup</span></div>
+    </div>
+    <div class="badge-row">
+      <span class="badge">Node.js</span><span class="badge">Express</span><span class="badge">Gemini API</span>
+    </div>
+    <div class="project-links">
+      <a href="https://github.com/Advitnayak4311/eco-awareness-bot" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
+    <div class="project-top">
+      <div><div class="project-title">Smart College Helpdesk System (Rule-Based Web Application)</div>
+      <div class="project-desc">Built a rule-based web helpdesk for admissions, courses, fees, and placements queries. Automated responses for 10+ enquiry categories, reducing manual effort by approximately 50%. Integrated admin dashboard for secure query management.</div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><b>10+</b><span>enquiry categories</span></div>
+      <div class="metric"><b>~50%</b><span>manual effort reduced</span></div>
+      <div class="metric"><b>100%</b><span>admin dashboard integrated</span></div>
+    </div>
+    <div class="badge-row">
+      <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">HTML</span><span class="badge">CSS</span>
+    </div>
+    <div class="project-links">
+      <a href="https://github.com/Advitnayak4311/Smart-college-helpdesk" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.76-1.604-2.665-.3-5.467-1.334-5.467-5.931 0-1.31.469-2.38 1.236-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
+    <div class="project-top">
+      <div><div class="project-title">Resume Screening System (AI-Based ATS Simulator)</div>
+      <div class="project-desc">Developed an ATS simulator to analyze resume–job description match percentage. Achieved approximately 85% keyword alignment accuracy and reduced shortlisting effort by approximately 60%. Provided structured scoring and skill-gap feedback.</div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><b>85%</b><span>keyword alignment</span></div>
+      <div class="metric"><b>~60%</b><span>reduced shortlisting effort</span></div>
+      <div class="metric"><b>100%</b><span>automated skill-gap feedback</span></div>
+    </div>
+    <div class="badge-row">
+      <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">PyPDF2</span><span class="badge">HTML</span><span class="badge">CSS</span>
+    </div>
+    <div class="project-links">
+      <a href="https://github.com/Advitnayak4311/AI-Resume-Screening-ATS" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.76-1.604-2.665-.3-5.467-1.334-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="eyebrow reveal">Education</div>
+  <h2 class="section-title reveal">Academic Foundation.</h2>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-role">Bachelor of Engineering in Computer Science</div>
+      <div class="tl-org">Canara Engineering College (CGPA: 8.01)</div>
+      <div class="tl-desc">Oct. 2023 – Present | Mangalore, India. Focussing on core software engineering, systems programming, and artificial intelligence integration.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-role">Pre-University Course (PCM-CS)</div>
+      <div class="tl-org">Siddhartha Pre-University College (Percentage: 85.06%)</div>
+      <div class="tl-desc">Jun. 2021 – Mar. 2023 | Bhatkal, Karnataka. Pre-University Course focusing on Physics, Chemistry, Mathematics, and Computer Science.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-role">Secondary School Certificate (Class X — ICSE)</div>
+      <div class="tl-org">Vidyanjali Public School, Bhatkal (Percentage: 92.6%)</div>
+      <div class="tl-desc">Jun. 2019 – Jul. 2021 | Bhatkal, Karnataka. Indian Certificate of Secondary Education (ICSE) Board. Subjects: English, Kannada, History &amp; Civics, Geography, Mathematics, Science, Home Science.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="eyebrow reveal">Internship</div>
+  <h2 class="section-title reveal">Internship.</h2>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-role">QA Tester &amp; Analyst Intern (Remote)</div>
+      <div class="tl-org">GWING Software Technologies</div>
+      <div class="tl-desc">
+        Oct. 2025 – Nov. 2025 | Tested software builds for functional and regression issues, logged defects, and worked with the dev team to verify fixes before release. Acquired hands-on experience in software testing workflows.
+        <div style="margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="openCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            View Completion Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="eyebrow reveal">Certifications</div>
+  <h2 class="section-title reveal">Credentials I've earned.</h2>
+  <div class="grid-3 reveal">
+    <div class="cert-card glass">
+      <div class="cert-top">
+        <div class="cert-icon">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg" alt="Oracle" style="width:80px;height:80px;object-fit:contain;">
+        </div>
+        <div class="cert-name">Oracle Cloud Infrastructure 2025 Certified Generative AI Professional</div>
+        <div class="cert-org">Oracle University (Sept 2025)</div>
+      </div>
+      <div style="margin-top: 16px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openOracleCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+    <div class="cert-card glass">
+      <div class="cert-top">
+        <div class="cert-icon">
+          <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:28px;">
+            <text x="0" y="26" font-family="Arial,sans-serif" font-size="26" font-weight="bold" fill="#ffffff" letter-spacing="-0.5">Deloitte</text>
+            <circle cx="114" cy="22" r="6" fill="#86BC25"/>
+          </svg>
+        </div>
+        <div class="cert-name">Cyber Job Simulation</div>
+        <div class="cert-org">Deloitte (Forage) (July 2025)</div>
+      </div>
+      <div style="margin-top: 16px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openDeloitteCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+    <div class="cert-card glass">
+      <div class="cert-top">
+        <div class="cert-icon">
+          <svg viewBox="0 0 140 55" xmlns="http://www.w3.org/2000/svg" style="width:88px;height:35px;">
+            <defs>
+              <clipPath id="ibm-clip">
+                <text x="4" y="50" font-family="Arial Black,Arial,sans-serif" font-size="50" font-weight="900" letter-spacing="5">IBM</text>
+              </clipPath>
+            </defs>
+            <rect x="0" y="0"  width="140" height="7" fill="#0f62fe" clip-path="url(#ibm-clip)"/>
+            <rect x="0" y="9"  width="140" height="7" fill="#0f62fe" clip-path="url(#ibm-clip)"/>
+            <rect x="0" y="18" width="140" height="7" fill="#0f62fe" clip-path="url(#ibm-clip)"/>
+            <rect x="0" y="27" width="140" height="7" fill="#0f62fe" clip-path="url(#ibm-clip)"/>
+            <rect x="0" y="36" width="140" height="7" fill="#0f62fe" clip-path="url(#ibm-clip)"/>
+            <rect x="0" y="45" width="140" height="7" fill="#0f62fe" clip-path="url(#ibm-clip)"/>
+          </svg>
+        </div>
+        <div class="cert-name">Introduction to Software Engineering</div>
+        <div class="cert-org">IBM (Coursera)</div>
+      </div>
+      <div style="margin-top: 16px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openIbmCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+    <div class="cert-card glass">
+      <div class="cert-top">
+        <div class="cert-icon">
+          <svg viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+            <polygon points="27,2 52,15.5 52,38.5 27,52 2,38.5 2,15.5" fill="#2EC866"/>
+            <text x="27" y="35" font-family="Courier New,monospace" font-size="17" font-weight="bold" fill="white" text-anchor="middle">&lt;/&gt;</text>
+          </svg>
+        </div>
+        <div class="cert-name">Java (Basic)</div>
+        <div class="cert-org">HackerRank (OOP Concepts)</div>
+      </div>
+      <div style="margin-top: 16px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openHackerrankCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="eyebrow reveal">Achievements</div>
+  <h2 class="section-title reveal">Hackathons.</h2>
+  <div class="grid-3 reveal">
+    <div class="trophy-card glass" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 220px;">
+      <div>
+        <div class="trophy-icon">🏆</div>
+        <div class="trophy-name">Solve-A-Thon 1.0</div>
+        <div class="trophy-org">National 24-Hour Hackathon Finalist (SIT Mangaluru, Feb 2026)</div>
+      </div>
+      <div style="margin-top: 14px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openSolveathonModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+    <div class="trophy-card glass" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 220px;">
+      <div>
+        <div class="trophy-icon">🏆</div>
+        <div class="trophy-name">Chakravyuha</div>
+        <div class="trophy-org">Hackathon Participant (Srinivas University)</div>
+      </div>
+      <div style="margin-top: 14px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openChakravyuhaModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB -->
+<section id="github">
+  <div class="eyebrow reveal">GitHub</div>
+  <h2 class="section-title reveal">Building in public.</h2>
+  <div class="gh-grid reveal">
+    <div class="gh-card glass"><div class="gh-num" id="ghRepos" data-count="18">0</div><div class="gh-label">Repositories</div></div>
+    <div class="gh-card glass"><div class="gh-num" id="ghCommits" data-count="420">0</div><div class="gh-label">Commits</div></div>
+    <div class="gh-card glass"><div class="gh-num" id="ghFollowers" data-count="12">0</div><div class="gh-label">Followers</div></div>
+    <div class="gh-card glass"><div class="gh-num" id="ghStars" data-count="9">0</div><div class="gh-label">Stars</div></div>
+  </div>
+  <div class="contrib-graph reveal" id="contribGraph"></div>
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: 20px;" class="reveal">
+    <p style="color:var(--dim);font-size:12.5px;margin: 0;" id="ghStatus">Connecting to GitHub API...</p>
+    <a href="https://github.com/Advitnayak4311" target="_blank" class="btn btn-ghost" style="font-size: 13.5px; gap: 8px; border-radius: 12px; padding: 10px 18px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      Visit GitHub Profile
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="eyebrow reveal">Contact</div>
+  <h2 class="section-title reveal" style="text-align: center;">Let's build something.</h2>
+  
+  <!-- Form Section (Above) -->
+  <div class="contact-form-container glass reveal" style="max-width: 650px; margin: 0 auto 52px; border-radius: 24px; padding: 40px; position: relative;">
+    <form onsubmit="event.preventDefault(); alert('Message sent! In production, this can be wired to Resend or EmailJS.');">
+      <div class="form-field"><label>Name</label><input type="text" placeholder="Your name" required></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+      <div class="form-field"><label>Message</label><textarea rows="4" placeholder="Let's connect! What are you building?" required></textarea></div>
+      <button class="btn btn-primary" type="submit" style="width: 100%; justify-content: center;">Send Message</button>
+    </form>
+  </div>
+
+  <!-- Social Links Section (Below) -->
+  <div class="contact-links-grid reveal">
+    <a href="mailto:advithnayak1113@gmail.com" class="contact-link-card glass" onmousemove="tiltMove(event,this)">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-label">Email</span>
+        <span class="card-value">advithnayak1113@gmail.com</span>
+      </div>
+    </a>
+    <a href="tel:+919380810711" class="contact-link-card glass" onmousemove="tiltMove(event,this)">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-label">Phone</span>
+        <span class="card-value">+91 9380810711</span>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/advitumeshnayak" target="_blank" class="contact-link-card glass" onmousemove="tiltMove(event,this)">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-label">LinkedIn</span>
+        <span class="card-value">advitumeshnayak</span>
+      </div>
+    </a>
+    <a href="https://github.com/Advitnayak4311" target="_blank" class="contact-link-card glass" onmousemove="tiltMove(event,this)">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-label">GitHub</span>
+        <span class="card-value">Advitnayak4311</span>
+      </div>
+    </a>
+    <a href="https://hackerrank.com/profile/advitnayak" target="_blank" class="contact-link-card glass" onmousemove="tiltMove(event,this)">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M7 3H3v18h4v-2H5V5h2V3zM17 3h4v18h-4v-2h2V5h-2V3zM9 7h2v4h2V7h2v10h-2v-4h-2v4H9V7z"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <span class="card-label">HackerRank</span>
+        <span class="card-value">advitnayak</span>
+      </div>
+    </a>
+    <a href="https://leetcode.com/u/AdvitNayak/" target="_blank" class="contact-link-card glass" onmousemove="tiltMove(event,this)">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M22 14.355c0-.742-.601-1.346-1.34-1.346H10.676c-.675 0-1.222-.547-1.222-1.22 0-.675.547-1.222 1.222-1.222h9.983c.74 0 1.34-.604 1.34-1.346 0-.742-.6-1.347-1.34-1.347H10.676A3.914 3.914 0 0 0 6.76 11.79c0 2.16 1.753 3.912 3.915 3.912h9.984c.74 0 1.34-.604 1.34-1.347zM12.247 2.117c-.374 0-.743.151-1.012.42L2.42 11.352a1.431 1.431 0 0 0 0 2.022l8.815 8.815c.56.56 1.464.56 2.024 0l8.816-8.815a1.43 1.43 0 0 0 0-2.022L13.259 2.537a1.42 1.42 0 0 0-1.012-.42z"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <span class="card-label">LeetCode</span>
+        <span class="card-value">AdvitNayak</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-quote" id="footerQuote" style="font-family: var(--font-display); font-size: 15px; font-style: italic; color: var(--dim); margin-bottom: 22px; letter-spacing: 0.5px; opacity: 0.85; transition: opacity 0.6s ease;">
+    "First, solve the problem. Then, write the code."
+    <span class="quote-author" style="font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-top: 6px; font-style: normal; color: var(--cyan);">— John Johnson</span>
+  </div>
+  <div style="font-size: 13px; font-weight: 600; opacity: 0.9; letter-spacing: 0.5px; color: var(--text);">Built by Advit Umesh Nayak</div>
+</footer>
+
+<script>
+// ---------- starfield canvas ----------
+const canvas=document.getElementById('stars');
+const ctx=canvas.getContext('2d');
+let w,h,stars=[];
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+for(let i=0;i<160;i++){stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+0.2,s:Math.random()*0.3+0.05,a:Math.random()});}
+function drawStars(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#fff';
+  for(const s of stars){
+    s.a+=0.01*s.s*10;
+    const alpha=0.4+Math.abs(Math.sin(s.a))*0.6;
+    ctx.globalAlpha=alpha;
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.fill();
+    s.y+=s.s*0.15;
+    if(s.y>h)s.y=0;
+  }
+  ctx.globalAlpha=1;
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+// ---------- custom cursor ----------
+const glow=document.getElementById('cursorGlow'),dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+window.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  glow.style.left=mx+'px';glow.style.top=my+'px';
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function loop(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.skill-chip,.project-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.6)';dot.style.background='#fff';});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';dot.style.background='var(--cyan)';});
+});
+
+// ---------- project tilt glow ----------
+function tiltMove(e,card){
+  const r=card.getBoundingClientRect();
+  card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  card.style.setProperty('--my',(e.clientY-r.top)+'px');
+}
+
+// ---------- scroll reveal ----------
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target);}});
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ---------- counters ----------
+const counters=document.querySelectorAll('[data-count]');
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const el=en.target,target=+el.dataset.count;let cur=0;
+      const step=Math.max(1,Math.ceil(target/40));
+      const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=cur;},30);
+      cio.unobserve(el);
+    }
+  });
+},{threshold:0.4});
+counters.forEach(el=>cio.observe(el));
+
+// ---------- rotating role typing effect ----------
+const roles=["Computer Science Engineering Student","AI Enthusiast","Software Engineer","Problem Solver"];
+const roleEl=document.getElementById('rotatingRole');
+let ri=0,ci=0,deleting=false;
+function typeLoop(){
+  const full=roles[ri];
+  if(!deleting){
+    ci++;
+    roleEl.innerHTML=full.slice(0,ci)+'<span class="cursor-blink">&nbsp;</span>';
+    if(ci===full.length){deleting=true;setTimeout(typeLoop,1400);return;}
+  }else{
+    ci--;
+    roleEl.innerHTML=full.slice(0,ci)+'<span class="cursor-blink">&nbsp;</span>';
+    if(ci===0){deleting=false;ri=(ri+1)%roles.length;}
+  }
+  setTimeout(typeLoop,deleting?35:55);
+}
+typeLoop();
+
+// ---------- contribution graph mock ----------
+const cg=document.getElementById('contribGraph');
+for(let i=0;i<140;i++){
+  const cell=document.createElement('div');
+  cell.className='contrib-cell';
+  const lvl=Math.random();
+  cell.style.background = lvl>0.85?'#38BDF8':lvl>0.65?'#7B2FFF':lvl>0.4?'rgba(123,47,255,0.4)':'rgba(123,47,255,0.12)';
+  cg.appendChild(cell);
+}
+
+// ---------- command palette ----------
+const sections=[["Home","#home"],["About","#about"],["Skills","#skills"],["Projects","#projects"],["Education","#education"],["Internship","#experience"],["Certifications","#certs"],["Achievements","#achievements"],["GitHub","#github"],["Contact","#contact"]];
+const overlay=document.getElementById('cmdkOverlay'),input=document.getElementById('cmdkInput'),list=document.getElementById('cmdkList');
+function renderList(filter=''){
+  list.innerHTML='';
+  sections.filter(s=>s[0].toLowerCase().includes(filter.toLowerCase())).forEach(s=>{
+    const item=document.createElement('div');
+    item.className='cmdk-item';item.textContent=s[0];
+    item.onclick=()=>{document.querySelector(s[1]).scrollIntoView({behavior:'smooth'});closeCmdk();};
+    list.appendChild(item);
+  });
+}
+function openCmdk(){overlay.classList.add('open');renderList();input.value='';input.focus();}
+function closeCmdk(){overlay.classList.remove('open');}
+document.getElementById('cmdkBtn').onclick=openCmdk;
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeCmdk();});
+input.addEventListener('input',()=>renderList(input.value));
+window.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();overlay.classList.contains('open')?closeCmdk():openCmdk();}
+  if(e.key==='Escape'){closeCmdk();closeResumeModal();closeCertModal();closeSolveathonModal();closeChakravyuhaModal();closeOracleCertModal();closeDeloitteCertModal();closeIbmCertModal();closeHackerrankCertModal();}
+});
+
+// ---------- resume modal showcase ----------
+const resumeModal = document.getElementById('resumeModal');
+function openResumeModal() {
+  resumeModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeResumeModal() {
+  resumeModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+resumeModal.addEventListener('click', e => {
+  if (e.target === resumeModal) closeResumeModal();
+});
+
+// ---------- cert modal showcase ----------
+const certModal = document.getElementById('certModal');
+function openCertModal() {
+  certModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCertModal() {
+  certModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+certModal.addEventListener('click', e => {
+  if (e.target === certModal) closeCertModal();
+});
+
+// ---------- solveathon modal showcase ----------
+const solveathonModal = document.getElementById('solveathonModal');
+function openSolveathonModal() {
+  solveathonModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSolveathonModal() {
+  solveathonModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+solveathonModal.addEventListener('click', e => {
+  if (e.target === solveathonModal) closeSolveathonModal();
+});
+
+// ---------- chakravyuha modal showcase ----------
+const chakravyuhaModal = document.getElementById('chakravyuhaModal');
+function openChakravyuhaModal() {
+  chakravyuhaModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeChakravyuhaModal() {
+  chakravyuhaModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+chakravyuhaModal.addEventListener('click', e => {
+  if (e.target === chakravyuhaModal) closeChakravyuhaModal();
+});
+
+// ---------- oracle cert modal ----------
+const oracleCertModal = document.getElementById('oracleCertModal');
+function openOracleCertModal() { oracleCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeOracleCertModal() { oracleCertModal.classList.remove('open'); document.body.style.overflow = ''; }
+oracleCertModal.addEventListener('click', e => { if (e.target === oracleCertModal) closeOracleCertModal(); });
+
+// ---------- deloitte cert modal ----------
+const deloitteCertModal = document.getElementById('deloitteCertModal');
+function openDeloitteCertModal() { deloitteCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeDeloitteCertModal() { deloitteCertModal.classList.remove('open'); document.body.style.overflow = ''; }
+deloitteCertModal.addEventListener('click', e => { if (e.target === deloitteCertModal) closeDeloitteCertModal(); });
+
+// ---------- ibm cert modal ----------
+const ibmCertModal = document.getElementById('ibmCertModal');
+function openIbmCertModal() { ibmCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeIbmCertModal() { ibmCertModal.classList.remove('open'); document.body.style.overflow = ''; }
+ibmCertModal.addEventListener('click', e => { if (e.target === ibmCertModal) closeIbmCertModal(); });
+
+// ---------- hackerrank cert modal ----------
+const hackerrankCertModal = document.getElementById('hackerrankCertModal');
+function openHackerrankCertModal() { hackerrankCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeHackerrankCertModal() { hackerrankCertModal.classList.remove('open'); document.body.style.overflow = ''; }
+hackerrankCertModal.addEventListener('click', e => { if (e.target === hackerrankCertModal) closeHackerrankCertModal(); });
+
+// ---------- rotating footer quotes ----------
+const quotes = [
+  { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+  { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+  { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+  { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds" }
+];
+let quoteIndex = 0;
+const quoteEl = document.getElementById('footerQuote');
+function rotateQuote() {
+  if (!quoteEl) return;
+  quoteEl.style.opacity = '0';
+  setTimeout(() => {
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+    const nextQuote = quotes[quoteIndex];
+    quoteEl.innerHTML = `"${nextQuote.text}"<span class="quote-author" style="font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-top: 6px; font-style: normal; color: var(--cyan);">— ${nextQuote.author}</span>`;
+    quoteEl.style.opacity = '0.85';
+  }, 600);
+}
+setInterval(rotateQuote, 25000); // Rotates every 25 seconds
+
+// ---------- github api connection ----------
+async function fetchGitHubStats() {
+  const statusEl = document.getElementById('ghStatus');
+  try {
+    const userRes = await fetch('https://api.github.com/users/Advitnayak4311');
+    if (!userRes.ok) throw new Error('Rate limit or user not found');
+    const userData = await userRes.json();
+    
+    const reposRes = await fetch('https://api.github.com/users/Advitnayak4311/repos?per_page=100');
+    if (!reposRes.ok) throw new Error('Repos fetch failed');
+    const reposData = await reposRes.json();
+    
+    const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+    
+    const reposEl = document.getElementById('ghRepos');
+    const followersEl = document.getElementById('ghFollowers');
+    const starsEl = document.getElementById('ghStars');
+    
+    const updateVal = (el, val) => {
+      if (!el) return;
+      el.dataset.count = val;
+      let cur = parseInt(el.textContent) || 0;
+      if (cur !== val) {
+        const step = Math.max(1, Math.ceil(Math.abs(val - cur) / 20));
+        const increment = val > cur;
+        const t = setInterval(() => {
+          if (increment) {
+            cur += step;
+            if (cur >= val) { cur = val; clearInterval(t); }
+          } else {
+            cur -= step;
+            if (cur <= val) { cur = val; clearInterval(t); }
+          }
+          el.textContent = cur;
+        }, 30);
+      }
+    };
+    
+    updateVal(reposEl, userData.public_repos);
+    updateVal(followersEl, userData.followers);
+    updateVal(starsEl, totalStars);
+    
+    if (statusEl) statusEl.textContent = "Live stats connected via GitHub API.";
+  } catch (error) {
+    console.warn('Error fetching GitHub stats, using fallback:', error);
+    if (statusEl) statusEl.textContent = "Offline. Displaying default portfolio stats.";
+  }
+}
+fetchGitHubStats();
+</script>
+</body>
+</html>
