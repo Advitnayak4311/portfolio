@@ -259,6 +259,46 @@ h1.hero-title .grad{
 /* orbit visual */
 .orbit-wrap{position:relative;height:550px;display:flex;align-items:center;justify-content:center;}
 @media (max-width:960px){.orbit-wrap{display:none;}}
+
+/* ---------- mobile avatar (visible only on mobile) ---------- */
+.mobile-avatar-wrap{
+  display:none;
+  position:relative;
+  width:200px;
+  height:200px;
+  margin:28px auto 24px;
+}
+.mobile-avatar-img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  overflow:hidden;
+  position:relative;
+  z-index:2;
+  border:2px solid rgba(168,85,247,0.6);
+  box-shadow:0 0 30px rgba(123,47,255,0.35);
+  animation:floatAvatar 6s ease-in-out infinite;
+}
+.mobile-avatar-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.48);
+  transform-origin:center 25%;
+}
+.mobile-avatar-glow{
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  background:conic-gradient(from 0deg,var(--violet),var(--purple),var(--cyan),var(--violet));
+  z-index:1;
+  opacity:0.7;
+  filter:blur(14px);
+  animation:rotateGlow 8s linear infinite;
+}
+@media (max-width:960px){
+  .mobile-avatar-wrap{display:flex;justify-content:center;align-items:center;}
+}
 .planet-avatar-wrap {
   width: 340px;
   height: 340px;
@@ -824,6 +864,15 @@ footer .flinks a:hover{color:var(--text);}
       <div class="hero-eyebrow reveal"><span class="dot-live"></span>AVAILABLE FOR INTERNSHIPS &amp; ENTRY ROLES</div>
       <h1 class="hero-title reveal">Hi, I'm<br><span class="grad">Advit Umesh Nayak</span></h1>
       <div class="hero-role reveal" id="rotatingRole">Computer Science Engineering Student<span class="cursor-blink">&nbsp;</span></div>
+
+      <!-- MOBILE AVATAR — shown only on mobile (hidden on desktop) -->
+      <div class="mobile-avatar-wrap reveal">
+        <div class="mobile-avatar-glow"></div>
+        <div class="mobile-avatar-img">
+          <img src="./avatar.jpg" alt="Advit Umesh Nayak">
+        </div>
+      </div>
+
       <p class="hero-desc reveal">I'm a Computer Science Engineering student passionate about building scalable software, AI-powered applications, and technology-driven products that solve real-world problems. My interests span software engineering, cloud computing, DevOps, and entrepreneurship. I enjoy transforming innovative ideas into impactful digital solutions while continuously learning and building for the future.</p>
       <div class="hero-cta reveal">
         <a href="#projects" class="btn btn-primary">View Projects</a>
