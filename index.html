@@ -1968,7 +1968,7 @@ fetchGitHubStats();
   const CALLMEBOT_API_KEY = "YOUR_CALLMEBOT_API_KEY"; // e.g. "123456"
 
   if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
   }
 
   const contactForm = document.getElementById('contactForm');
@@ -2015,22 +2015,38 @@ fetchGitHubStats();
         return;
       }
 
+      let emailSentSuccess = false;
+
       try {
         const params = {
           from_name: fromName,
           from_email: fromEmail,
-          message: message,
+          name: fromName,
+          email: fromEmail,
+          user_email: fromEmail,
+          to_name: "Advit Umesh Nayak",
           to_email: 'advithnayak1113@gmail.com',
-          reply_to: fromEmail
+          reply_to: fromEmail,
+          message: message
         };
 
-        // 1. Send Email to Advit
+        // 1. Send Email Notification to Advit
         if (isEmailConfigured) {
-          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ADMIN, params);
+          try {
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ADMIN, params, EMAILJS_PUBLIC_KEY);
+            emailSentSuccess = true;
+          } catch (adminErr) {
+            console.error('EmailJS Admin notification error:', adminErr);
+          }
 
-          // 2. Send Auto-Reply Email to Sender (if template configured)
-          if (EMAILJS_TEMPLATE_ID_SENDER && EMAILJS_TEMPLATE_ID_SENDER !== 'YOUR_AUTO_REPLY_TEMPLATE_ID') {
-            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_SENDER, params);
+          // 2. Send Auto-Reply Confirmation to Sender
+          if (EMAILJS_TEMPLATE_ID_SENDER && EMAILJS_TEMPLATE_ID_SENDER !== EMAILJS_TEMPLATE_ID_ADMIN) {
+            try {
+              await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_SENDER, params, EMAILJS_PUBLIC_KEY);
+              emailSentSuccess = true;
+            } catch (senderErr) {
+              console.warn('EmailJS Auto-reply confirmation warning:', senderErr);
+            }
           }
         }
 
@@ -2041,14 +2057,16 @@ fetchGitHubStats();
           fetch(waUrl, { mode: 'no-cors' }).catch(err => console.warn('WhatsApp alert failed:', err));
         }
 
-        // Show Success UI
-        statusMsg.style.display = 'block';
-        statusMsg.style.background = 'rgba(34, 197, 94, 0.12)';
-        statusMsg.style.border = '1px solid rgba(34, 197, 94, 0.3)';
-        statusMsg.style.color = '#4ADE80';
-        statusMsg.innerHTML = '🚀 <strong>Message sent successfully!</strong><br>A confirmation has been sent to <code>' + fromEmail + '</code>, and Advit has been notified via Email & WhatsApp.';
-        
-        contactForm.reset();
+        if (emailSentSuccess || isWhatsappConfigured) {
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'rgba(34, 197, 94, 0.12)';
+          statusMsg.style.border = '1px solid rgba(34, 197, 94, 0.3)';
+          statusMsg.style.color = '#4ADE80';
+          statusMsg.innerHTML = '🚀 <strong>Message sent successfully!</strong><br>A confirmation has been sent to <code>' + fromEmail + '</code>, and Advit has been notified.';
+          contactForm.reset();
+        } else {
+          throw new Error('Email sending failed.');
+        }
       } catch (err) {
         console.error('Submit error:', err);
         statusMsg.style.display = 'block';
