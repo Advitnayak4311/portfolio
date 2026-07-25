@@ -1954,13 +1954,18 @@ async function fetchGitHubStats() {
 }
 fetchGitHubStats();
 
-// ---------- emailjs contact form handling ----------
+// ---------- contact form submission (emailjs & whatsapp notification) ----------
 (function() {
-  // CONFIGURATION: Replace these credentials with your EmailJS keys from https://dashboard.emailjs.com
-  const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";      // e.g. "user_xxxxxxxxxxxx"
-  const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";      // e.g. "service_xxxxxxx"
-  const EMAILJS_TEMPLATE_ID_ADMIN = "YOUR_ADMIN_TEMPLATE_ID"; // Template for notification to Advit
-  const EMAILJS_TEMPLATE_ID_SENDER = "YOUR_AUTO_REPLY_TEMPLATE_ID"; // Template for auto-reply confirmation to sender (Optional)
+  // 1. EMAILJS CREDENTIALS (Get free at https://dashboard.emailjs.com)
+  const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";        // e.g. "user_xxxxxxxxxxxx"
+  const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";        // e.g. "service_xxxxxxx"
+  const EMAILJS_TEMPLATE_ID_ADMIN = "YOUR_ADMIN_TEMPLATE_ID";   // Email notification to Advit
+  const EMAILJS_TEMPLATE_ID_SENDER = "YOUR_AUTO_REPLY_TEMPLATE_ID"; // Auto-reply confirmation to sender
+
+  // 2. WHATSAPP NOTIFICATION CREDENTIALS (CallMeBot API - Free)
+  // Get your free API key by sending "I allow callmebot to send me messages" on WhatsApp to +34 644 44 44 44
+  const WHATSAPP_PHONE = "+919380810711"; // Advit's WhatsApp number
+  const CALLMEBOT_API_KEY = "YOUR_CALLMEBOT_API_KEY"; // e.g. "123456"
 
   if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -1989,8 +1994,11 @@ fetchGitHubStats();
       statusMsg.style.display = 'none';
 
       // Check if credentials are set
-      if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY' || EMAILJS_SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID') {
-        // Interactive demonstration when keys are not yet configured
+      const isEmailConfigured = EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY' && EMAILJS_SERVICE_ID !== 'YOUR_EMAILJS_SERVICE_ID';
+      const isWhatsappConfigured = CALLMEBOT_API_KEY !== 'YOUR_CALLMEBOT_API_KEY';
+
+      if (!isEmailConfigured && !isWhatsappConfigured) {
+        // Demonstration notice when keys are not yet added
         setTimeout(() => {
           submitBtn.disabled = false;
           btnText.textContent = 'Send Message';
@@ -2000,7 +2008,7 @@ fetchGitHubStats();
           statusMsg.style.background = 'rgba(56, 189, 248, 0.12)';
           statusMsg.style.border = '1px solid rgba(56, 189, 248, 0.3)';
           statusMsg.style.color = '#38BDF8';
-          statusMsg.innerHTML = '✨ <strong>Message simulation successful!</strong><br>To receive live emails at <code>advithnayak1113@gmail.com</code> and send auto-replies to <code>' + fromEmail + '</code>, add your free EmailJS keys in <code>index.html</code>.';
+          statusMsg.innerHTML = '✨ <strong>Message simulation successful!</strong><br>Follow the simple guide provided by AI assistant to add your free Email & WhatsApp API keys in <code>index.html</code> for live notifications.';
           
           contactForm.reset();
         }, 1000);
@@ -2016,12 +2024,21 @@ fetchGitHubStats();
           reply_to: fromEmail
         };
 
-        // 1. Send notification to recipient (Advit)
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ADMIN, params);
+        // 1. Send Email to Advit
+        if (isEmailConfigured) {
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ADMIN, params);
 
-        // 2. Send auto-reply confirmation to sender (if template provided)
-        if (EMAILJS_TEMPLATE_ID_SENDER && EMAILJS_TEMPLATE_ID_SENDER !== 'YOUR_AUTO_REPLY_TEMPLATE_ID') {
-          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_SENDER, params);
+          // 2. Send Auto-Reply Email to Sender (if template configured)
+          if (EMAILJS_TEMPLATE_ID_SENDER && EMAILJS_TEMPLATE_ID_SENDER !== 'YOUR_AUTO_REPLY_TEMPLATE_ID') {
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_SENDER, params);
+          }
+        }
+
+        // 3. Send Instant WhatsApp Alert to Advit (+919380810711)
+        if (isWhatsappConfigured) {
+          const waText = `🔔 *New Portfolio Contact!*\n\n👤 *Name:* ${fromName}\n✉️ *Email:* ${fromEmail}\n💬 *Message:* ${message}`;
+          const waUrl = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(WHATSAPP_PHONE)}&text=${encodeURIComponent(waText)}&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
+          fetch(waUrl, { mode: 'no-cors' }).catch(err => console.warn('WhatsApp alert failed:', err));
         }
 
         // Show Success UI
@@ -2029,16 +2046,16 @@ fetchGitHubStats();
         statusMsg.style.background = 'rgba(34, 197, 94, 0.12)';
         statusMsg.style.border = '1px solid rgba(34, 197, 94, 0.3)';
         statusMsg.style.color = '#4ADE80';
-        statusMsg.innerHTML = '🚀 <strong>Message sent successfully!</strong><br>A confirmation email has been sent to <code>' + fromEmail + '</code> and Advit has been notified.';
+        statusMsg.innerHTML = '🚀 <strong>Message sent successfully!</strong><br>A confirmation has been sent to <code>' + fromEmail + '</code>, and Advit has been notified via Email & WhatsApp.';
         
         contactForm.reset();
       } catch (err) {
-        console.error('EmailJS submit error:', err);
+        console.error('Submit error:', err);
         statusMsg.style.display = 'block';
         statusMsg.style.background = 'rgba(239, 68, 68, 0.12)';
         statusMsg.style.border = '1px solid rgba(239, 68, 68, 0.3)';
         statusMsg.style.color = '#F87171';
-        statusMsg.innerHTML = '❌ <strong>Failed to send message.</strong><br>Please check your connection or contact directly via <a href="mailto:advithnayak1113@gmail.com" style="text-decoration:underline;color:inherit;">advithnayak1113@gmail.com</a>.';
+        statusMsg.innerHTML = '❌ <strong>Failed to send message.</strong><br>Please try again or email directly at <a href="mailto:advithnayak1113@gmail.com" style="text-decoration:underline;color:inherit;">advithnayak1113@gmail.com</a>.';
       } finally {
         submitBtn.disabled = false;
         btnText.textContent = 'Send Message';
