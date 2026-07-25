@@ -7,6 +7,8 @@
 <meta name="description" content="Portfolio of Advit Umesh Nayak — AI Enthusiast, Software Engineer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 :root{
   --bg:#040404;
@@ -62,6 +64,7 @@ ul{list-style:none;}
   animation:auroraMove 18s ease-in-out infinite alternate;
 }
 @keyframes auroraMove{0%{transform:translate(0,0) scale(1);}100%{transform:translate(2%,-3%) scale(1.05);}}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 
 .cursor-glow{
   position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;
@@ -1565,11 +1568,17 @@ footer .flinks a:hover{color:var(--text);}
   
   <!-- Form Section (Above) -->
   <div class="contact-form-container glass reveal" style="max-width: 650px; margin: 0 auto 52px; border-radius: 24px; padding: 40px; position: relative;">
-    <form onsubmit="event.preventDefault(); alert('Message sent! In production, this can be wired to Resend or EmailJS.');">
-      <div class="form-field"><label>Name</label><input type="text" placeholder="Your name" required></div>
-      <div class="form-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
-      <div class="form-field"><label>Message</label><textarea rows="4" placeholder="Let's connect! What are you building?" required></textarea></div>
-      <button class="btn btn-primary" type="submit" style="width: 100%; justify-content: center;">Send Message</button>
+    <form id="contactForm">
+      <div class="form-field"><label for="senderName">Name</label><input type="text" id="senderName" name="from_name" placeholder="Your name" required></div>
+      <div class="form-field"><label for="senderEmail">Email</label><input type="email" id="senderEmail" name="from_email" placeholder="you@email.com" required></div>
+      <div class="form-field"><label for="senderMessage">Message</label><textarea id="senderMessage" name="message" rows="4" placeholder="Let's connect! What are you building?" required></textarea></div>
+      <button class="btn btn-primary" type="submit" id="submitBtn" style="width: 100%; justify-content: center; display: inline-flex; align-items: center; gap: 10px;">
+        <span id="btnText">Send Message</span>
+        <svg id="btnSpinner" style="display: none; animation: spin 0.8s linear infinite;" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="10" stroke-linecap="round"></circle>
+        </svg>
+      </button>
+      <div id="formStatusMsg" style="display: none; margin-top: 18px; padding: 14px 18px; border-radius: 12px; font-size: 13.5px; line-height: 1.5; text-align: center; backdrop-filter: blur(10px);"></div>
     </form>
   </div>
 
@@ -1944,6 +1953,100 @@ async function fetchGitHubStats() {
   }
 }
 fetchGitHubStats();
+
+// ---------- emailjs contact form handling ----------
+(function() {
+  // CONFIGURATION: Replace these credentials with your EmailJS keys from https://dashboard.emailjs.com
+  const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";      // e.g. "user_xxxxxxxxxxxx"
+  const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";      // e.g. "service_xxxxxxx"
+  const EMAILJS_TEMPLATE_ID_ADMIN = "YOUR_ADMIN_TEMPLATE_ID"; // Template for notification to Advit
+  const EMAILJS_TEMPLATE_ID_SENDER = "YOUR_AUTO_REPLY_TEMPLATE_ID"; // Template for auto-reply confirmation to sender (Optional)
+
+  if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
+  const contactForm = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
+  const btnSpinner = document.getElementById('btnSpinner');
+  const statusMsg = document.getElementById('formStatusMsg');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const fromName = document.getElementById('senderName').value.trim();
+      const fromEmail = document.getElementById('senderEmail').value.trim();
+      const message = document.getElementById('senderMessage').value.trim();
+
+      if (!fromName || !fromEmail || !message) return;
+
+      // Show loading UI
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnSpinner.style.display = 'inline-block';
+      statusMsg.style.display = 'none';
+
+      // Check if credentials are set
+      if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY' || EMAILJS_SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID') {
+        // Interactive demonstration when keys are not yet configured
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          btnText.textContent = 'Send Message';
+          btnSpinner.style.display = 'none';
+          
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'rgba(56, 189, 248, 0.12)';
+          statusMsg.style.border = '1px solid rgba(56, 189, 248, 0.3)';
+          statusMsg.style.color = '#38BDF8';
+          statusMsg.innerHTML = '✨ <strong>Message simulation successful!</strong><br>To receive live emails at <code>advithnayak1113@gmail.com</code> and send auto-replies to <code>' + fromEmail + '</code>, add your free EmailJS keys in <code>index.html</code>.';
+          
+          contactForm.reset();
+        }, 1000);
+        return;
+      }
+
+      try {
+        const params = {
+          from_name: fromName,
+          from_email: fromEmail,
+          message: message,
+          to_email: 'advithnayak1113@gmail.com',
+          reply_to: fromEmail
+        };
+
+        // 1. Send notification to recipient (Advit)
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_ADMIN, params);
+
+        // 2. Send auto-reply confirmation to sender (if template provided)
+        if (EMAILJS_TEMPLATE_ID_SENDER && EMAILJS_TEMPLATE_ID_SENDER !== 'YOUR_AUTO_REPLY_TEMPLATE_ID') {
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID_SENDER, params);
+        }
+
+        // Show Success UI
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(34, 197, 94, 0.12)';
+        statusMsg.style.border = '1px solid rgba(34, 197, 94, 0.3)';
+        statusMsg.style.color = '#4ADE80';
+        statusMsg.innerHTML = '🚀 <strong>Message sent successfully!</strong><br>A confirmation email has been sent to <code>' + fromEmail + '</code> and Advit has been notified.';
+        
+        contactForm.reset();
+      } catch (err) {
+        console.error('EmailJS submit error:', err);
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(239, 68, 68, 0.12)';
+        statusMsg.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+        statusMsg.style.color = '#F87171';
+        statusMsg.innerHTML = '❌ <strong>Failed to send message.</strong><br>Please check your connection or contact directly via <a href="mailto:advithnayak1113@gmail.com" style="text-decoration:underline;color:inherit;">advithnayak1113@gmail.com</a>.';
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnSpinner.style.display = 'none';
+      }
+    });
+  }
+})();
 </script>
 </body>
 </html>
