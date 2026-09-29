@@ -890,6 +890,40 @@ footer .flinks a:hover{color:var(--text);}
   </div>
 </div>
 
+<!-- EDIFY EQUITY CERT MODAL -->
+<div class="modal-overlay" id="edifyCertModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>Edify Equity — Finance Research Analyst Internship Certificate</h3>
+      <button class="modal-close" onclick="closeEdifyCertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Edify%20Equity.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Edify%20Equity.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Edify%20Equity.pdf" download="Advit_Umesh_Nayak_Edify_Equity_Internship.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
+<!-- VTU CERT MODAL -->
+<div class="modal-overlay" id="vtuCertModal">
+  <div class="modal-box glass">
+    <div class="modal-header">
+      <h3>VTU — Introduction to Artificial Intelligence (Elite GOLD)</h3>
+      <button class="modal-close" onclick="closeVtuCertModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe src="./Minor%20Degree.pdf" class="resume-iframe"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="./Minor%20Degree.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Minor%20Degree.pdf" download="Advit_Nayak_VTU_AI_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner">
@@ -958,7 +992,7 @@ footer .flinks a:hover{color:var(--text);}
       <div class="about-facts">
         <div><span>Location</span>Ankola, Karnataka, India</div>
         <div><span>College Education</span>Canara Engineering College (Oct 2023 - Present)</div>
-        <div><span>CGPA</span>8.01 / 10</div>
+        <div><span>CGPA</span>7.93 / 10</div>
         <div><span>Pre-University</span>Siddhartha PU College<br><small style="color:var(--dim);font-size:11.5px;">PCM-CS &nbsp;·&nbsp; 2021–2023 &nbsp;·&nbsp; Percentage: 85.06%</small></div>
         <div><span>Spoken Languages</span>English | Hindi | Kannada</div>
         <div><span>Focus</span>Software Engineering</div>
@@ -966,9 +1000,9 @@ footer .flinks a:hover{color:var(--text);}
     </div>
     <div class="stat-grid reveal">
       <div class="stat-card glass"><div class="stat-num" data-count="10">0</div><div class="stat-label">Projects Shipped</div></div>
-      <div class="stat-card glass"><div class="stat-num" data-count="1">0</div><div class="stat-label">Internship</div></div>
+      <div class="stat-card glass"><div class="stat-num" data-count="2">0</div><div class="stat-label">Internships</div></div>
       <div class="stat-card glass"><div class="stat-num" data-count="2">0</div><div class="stat-label">Hackathons</div></div>
-      <div class="stat-card glass"><div class="stat-num" data-count="5">0</div><div class="stat-label">Certifications</div></div>
+      <div class="stat-card glass"><div class="stat-num" data-count="6">0</div><div class="stat-label">Certifications</div></div>
     </div>
   </div>
 </section>
@@ -1067,7 +1101,7 @@ footer .flinks a:hover{color:var(--text);}
       </div>
     </div>
     <div class="skill-cat">
-      <h3>Tools & DevOps</h3>
+      <h3>Cloud & DevOps</h3>
       <div class="skill-grid">
         <div class="skill-card glass">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker">
@@ -1081,6 +1115,15 @@ footer .flinks a:hover{color:var(--text);}
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" style="filter: invert(1);">
           <span class="skill-name">GitHub</span>
         </div>
+        <div class="skill-card glass">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="#ffffff"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+          <span class="skill-name">Vercel</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Developer Tools</h3>
+      <div class="skill-grid">
         <div class="skill-card glass">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">
           <span class="skill-name">VS Code</span>
@@ -1348,17 +1391,17 @@ footer .flinks a:hover{color:var(--text);}
 
   <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
     <div class="project-top">
-      <div><div class="project-title">Resume Screening System (ATS Simulator)</div>
-      <div class="project-desc">Developed a web-based ATS simulator that compares resumes against job descriptions using keyword matching and resume parsing. Implemented PDF upload, keyword extraction, match percentage calculation, and skill-gap analysis to assist users in optimizing resumes for job applications. Future Enhancement: Semantic similarity using NLP/LLMs and AI-powered recommendations.</div></div>
+      <div><div class="project-title">Resume Screening System (AI-Based ATS Simulator)</div>
+      <div class="project-desc">Developed an ATS simulator to analyze resume–job description match percentage. Achieved approximately 85% keyword alignment accuracy and reduced shortlisting effort by approximately 60%. Provided structured scoring and skill-gap feedback.</div></div>
     </div>
     <div class="metric-row">
-      <div class="metric"><b>85%</b><span>Resume–JD Match Accuracy</span></div>
-      <div class="metric"><b>60%</b><span>Faster Resume Screening</span></div>
-      <div class="metric"><b>100%</b><span>Automated Keyword Analysis</span></div>
-      <div class="metric"><b>PDF</b><span>Resume Parsing</span></div>
+      <div class="metric"><b>~85%</b><span>Keyword Alignment Accuracy</span></div>
+      <div class="metric"><b>~60%</b><span>Shortlisting Effort Reduced</span></div>
+      <div class="metric"><b>Structured</b><span>Scoring &amp; Skill-Gap Feedback</span></div>
+      <div class="metric"><b>PDF</b><span>Resume–JD Parsing</span></div>
     </div>
     <div class="badge-row">
-      <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">PyPDF2</span><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span>
+      <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">PyPDF2</span><span class="badge">HTML</span><span class="badge">CSS</span>
     </div>
     <div class="project-links">
       <a href="https://github.com/Advitnayak4311/AI-Resume-Screening-ATS" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
@@ -1374,16 +1417,17 @@ footer .flinks a:hover{color:var(--text);}
 
   <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
     <div class="project-top">
-      <div><div class="project-title">Smart Attendance System with QR Code & Facial Recognition</div>
-      <div class="project-desc">Developed a secure attendance management system that combines QR Code scanning with OpenCV-powered facial recognition for two-factor student verification. Built with Flask and Python, the system eliminates proxy attendance while providing real-time attendance tracking, student management, and an easy-to-use administrative dashboard.</div></div>
+      <div><div class="project-title">Dual Authentication Attendance Tracker (QR Code &amp; Facial Recognition)</div>
+      <div class="project-desc">Built a secure attendance system using QR scanning and facial recognition to prevent proxy attendance. Reduced proxy attendance by approximately 90% and improved accuracy by approximately 35–40%. Cut attendance processing time by approximately 50% for 100+ users.</div></div>
     </div>
     <div class="metric-row">
-      <div class="metric"><b>99%</b><span>Attendance Integrity</span></div>
-      <div class="metric"><b>2-Step</b><span>QR + Face Verification</span></div>
-      <div class="metric"><b>Instant</b><span>Attendance Logging</span></div>
+      <div class="metric"><b>~90%</b><span>Proxy Attendance Reduced</span></div>
+      <div class="metric"><b>35–40%</b><span>Accuracy Improvement</span></div>
+      <div class="metric"><b>~50%</b><span>Processing Time Cut</span></div>
+      <div class="metric"><b>100+</b><span>Users Supported</span></div>
     </div>
     <div class="badge-row">
-      <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">OpenCV</span><span class="badge">SQLite</span><span class="badge">JavaScript</span><span class="badge">Bootstrap</span>
+      <span class="badge">Python</span><span class="badge">Java</span><span class="badge">OpenCV</span><span class="badge">QR Code</span><span class="badge">MySQL</span><span class="badge">SQLite</span>
     </div>
     <div class="project-links">
       <a href="https://github.com/Advitnayak4311/Dual-Attendance-Tracking-with-QR-Code-Scanning-and-Facial-Recognition" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
@@ -1424,17 +1468,17 @@ footer .flinks a:hover{color:var(--text);}
 
   <div class="project-card glass reveal" onmousemove="tiltMove(event,this)">
     <div class="project-top">
-      <div><div class="project-title">Eco Awareness Bot</div>
-      <div class="project-desc">An environmental awareness web application designed to educate users about sustainability, waste management, recycling, climate change, and eco-friendly practices through an interactive chatbot interface. The project features a responsive design, theme switching, and an environmental knowledge base, built with an AI-ready chatbot architecture, with Gemini API integration planned for future release. Future Enhancement: Gemini API integration for AI-powered responses and contextual environmental guidance.</div></div>
+      <div><div class="project-title">Eco Awareness Bot (AI-Powered Web Chatbot)</div>
+      <div class="project-desc">Developed an AI chatbot using Google Gemini to promote recycling and sustainability awareness. Handled 100+ queries with approximately 60% higher engagement than static pages. Reduced information lookup time by approximately 70% via real-time AI responses.</div></div>
     </div>
     <div class="metric-row">
-      <div class="metric"><b>100%</b><span>Responsive UI</span></div>
-      <div class="metric"><b>5+</b><span>Environmental Topics</span></div>
-      <div class="metric"><b>Upcoming</b><span>Gemini API Integration</span></div>
-      <div class="metric"><b>100%</b><span>Modern Chat Interface</span></div>
+      <div class="metric"><b>100+</b><span>Queries Handled</span></div>
+      <div class="metric"><b>~60%</b><span>Higher Engagement</span></div>
+      <div class="metric"><b>~70%</b><span>Lookup Time Reduced</span></div>
+      <div class="metric"><b>Real-Time</b><span>Google Gemini AI</span></div>
     </div>
     <div class="badge-row">
-      <span class="badge">React</span><span class="badge">Node.js</span><span class="badge">Express.js</span><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span>
+      <span class="badge">Google Gemini AI</span><span class="badge">Node.js</span><span class="badge">Express.js</span><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span>
     </div>
     <div class="project-links">
       <a href="https://github.com/Advitnayak4311/eco-awareness-bot" target="_blank" style="display: inline-flex; align-items: center; gap: 8px;">
@@ -1454,9 +1498,10 @@ footer .flinks a:hover{color:var(--text);}
       <div class="project-desc">Built a rule-based web helpdesk for admissions, courses, fees, and placements queries. Automated responses for 10+ enquiry categories, reducing manual effort by approximately 50%. Integrated admin dashboard for secure query management.</div></div>
     </div>
     <div class="metric-row">
-      <div class="metric"><b>10+</b><span>enquiry categories</span></div>
-      <div class="metric"><b>~50%</b><span>manual effort reduced</span></div>
-      <div class="metric"><b>100%</b><span>admin dashboard integrated</span></div>
+      <div class="metric"><b>10+</b><span>Enquiry Categories Automated</span></div>
+      <div class="metric"><b>~50%</b><span>Manual Effort Reduced</span></div>
+      <div class="metric"><b>Admin</b><span>Secure Query Management</span></div>
+      <div class="metric"><b>Rule-Based</b><span>Automated Engine</span></div>
     </div>
     <div class="badge-row">
       <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">HTML</span><span class="badge">CSS</span>
@@ -1478,8 +1523,8 @@ footer .flinks a:hover{color:var(--text);}
   <div class="timeline reveal">
     <div class="tl-item">
       <div class="tl-role">Bachelor of Engineering in Computer Science</div>
-      <div class="tl-org">Canara Engineering College (CGPA: 8.01)</div>
-      <div class="tl-desc">Oct. 2023 – Present | Mangalore, India. Focussing on core software engineering, systems programming, and artificial intelligence integration.</div>
+      <div class="tl-org">Canara Engineering College (CGPA: 7.93)</div>
+      <div class="tl-desc">Oct. 2023 – Present | Mangalore, India. Focusing on core software engineering, algorithms, AI integration, and systems design.</div>
     </div>
     <div class="tl-item">
       <div class="tl-role">Pre-University Course (PCM-CS)</div>
@@ -1497,13 +1542,26 @@ footer .flinks a:hover{color:var(--text);}
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="eyebrow reveal">Internship</div>
-  <h2 class="section-title reveal">Internship.</h2>
+  <h2 class="section-title reveal">Internship Experience.</h2>
   <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-role">Finance Research Analyst Intern</div>
+      <div class="tl-org">Edify Equity · Bangalore, India</div>
+      <div class="tl-desc">
+        Jul. 2026 – Aug. 2026 | Completed a one-month professional internship program as a Finance Research Analyst. Contributed to financial research, market analytics, and equity evaluation workflows.
+        <div style="margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="openEdifyCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            View Completion Certificate
+          </a>
+        </div>
+      </div>
+    </div>
     <div class="tl-item">
       <div class="tl-role">QA Tester &amp; Analyst Intern (Remote)</div>
       <div class="tl-org">GWING Software Technologies</div>
       <div class="tl-desc">
-        Oct. 2025 – Nov. 2025 | Tested software builds for functional and regression issues, logged defects, and worked with the dev team to verify fixes before release. Acquired hands-on experience in software testing workflows.
+        Oct. 2025 – Nov. 2025 | Conducted manual testing to identify bugs and improve software quality. Reported issues clearly and assisted in testing documentation. Acquired hands-on experience in software testing workflows.
         <div style="margin-top: 14px;">
           <a href="javascript:void(0)" onclick="openCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -1608,6 +1666,27 @@ footer .flinks a:hover{color:var(--text);}
       </div>
       <div style="margin-top: 16px; width: 100%;">
         <a href="javascript:void(0)" onclick="openHackerrankCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          View Certificate
+        </a>
+      </div>
+    </div>
+    <div class="cert-card glass">
+      <div class="cert-top">
+        <div class="cert-icon">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:52px;">
+            <circle cx="30" cy="30" r="28" fill="rgba(245, 158, 11, 0.12)" stroke="#f59e0b" stroke-width="2"/>
+            <path d="M30 14L48 23L30 32L12 23L30 14Z" fill="#f59e0b"/>
+            <path d="M20 28V38C20 42 30 46 30 46C30 46 40 42 40 38V28L30 33L20 28Z" fill="#d97706"/>
+            <circle cx="48" cy="30" r="2.5" fill="#fef08a"/>
+            <path d="M48 32.5V39" stroke="#fef08a" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cert-name">An Introduction to Artificial Intelligence</div>
+        <div class="cert-org">VTU — Centre for Online Education (Elite GOLD)</div>
+      </div>
+      <div style="margin-top: 16px; width: 100%;">
+        <a href="javascript:void(0)" onclick="openVtuCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
           View Certificate
         </a>
@@ -1875,7 +1954,7 @@ overlay.addEventListener('click',e=>{if(e.target===overlay)closeCmdk();});
 input.addEventListener('input',()=>renderList(input.value));
 window.addEventListener('keydown',e=>{
   if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();overlay.classList.contains('open')?closeCmdk():openCmdk();}
-  if(e.key==='Escape'){closeCmdk();closeResumeModal();closeCertModal();closeSolveathonModal();closeChakravyuhaModal();closeOracleCertModal();closeDeloitteCertModal();closeIbmCertModal();closeHackerrankCertModal();closeNptelCertModal();closeMobileNav();}
+  if(e.key==='Escape'){closeCmdk();closeResumeModal();closeCertModal();closeEdifyCertModal();closeVtuCertModal();closeSolveathonModal();closeChakravyuhaModal();closeOracleCertModal();closeDeloitteCertModal();closeIbmCertModal();closeHackerrankCertModal();closeNptelCertModal();closeMobileNav();}
 });
 
 // ---------- mobile nav ----------
@@ -1989,6 +2068,18 @@ const nptelCertModal = document.getElementById('nptelCertModal');
 function openNptelCertModal() { nptelCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeNptelCertModal() { nptelCertModal.classList.remove('open'); document.body.style.overflow = ''; }
 nptelCertModal.addEventListener('click', e => { if (e.target === nptelCertModal) closeNptelCertModal(); });
+
+// ---------- edify equity cert modal ----------
+const edifyCertModal = document.getElementById('edifyCertModal');
+function openEdifyCertModal() { edifyCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeEdifyCertModal() { edifyCertModal.classList.remove('open'); document.body.style.overflow = ''; }
+edifyCertModal.addEventListener('click', e => { if (e.target === edifyCertModal) closeEdifyCertModal(); });
+
+// ---------- vtu cert modal ----------
+const vtuCertModal = document.getElementById('vtuCertModal');
+function openVtuCertModal() { vtuCertModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeVtuCertModal() { vtuCertModal.classList.remove('open'); document.body.style.overflow = ''; }
+vtuCertModal.addEventListener('click', e => { if (e.target === vtuCertModal) closeVtuCertModal(); });
 
 // ---------- rotating footer quotes ----------
 const quotes = [
