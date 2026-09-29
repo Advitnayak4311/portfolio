@@ -504,7 +504,8 @@ h1.hero-title .grad{
 .gh-num{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--cyan);}
 .gh-label{font-size:12px;color:var(--dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px;}
 .contrib-graph{display:flex;gap:3px;margin-top:26px;flex-wrap:wrap;overflow:hidden;}
-.contrib-cell{width:11px;height:11px;border-radius:3px;background:rgba(123,47,255,0.15);}
+.contrib-cell{width:11px;height:11px;border-radius:3px;background:rgba(123,47,255,0.15);transition:transform 0.15s ease,filter 0.15s ease;cursor:pointer;}
+.contrib-cell:hover{transform:scale(1.4);filter:brightness(1.3);z-index:2;}
 
 /* ---------- contact ---------- */
 .contact-form-container {
@@ -745,11 +746,11 @@ footer .flinks a:hover{color:var(--text);}
       <button class="modal-close" onclick="closeResumeModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <iframe src="https://docs.google.com/gview?embedded=true&url=https://raw.githubusercontent.com/Advitnayak4311/portfolio/main/Advit_Umesh_Nayak_Resume.pdf" class="resume-iframe"></iframe>
+      <iframe src="./Advit_Umesh_Nayak_Resume.pdf" class="resume-iframe"></iframe>
     </div>
     <div class="modal-footer">
-      <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Advitnayak4311/portfolio/main/Advit_Umesh_Nayak_Resume.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
-      <a href="https://raw.githubusercontent.com/Advitnayak4311/portfolio/main/Advit_Umesh_Nayak_Resume.pdf" download="Advit_Umesh_Nayak_Resume.pdf" class="btn btn-primary">Download PDF</a>
+      <a href="./Advit_Umesh_Nayak_Resume.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
+      <a href="./Advit_Umesh_Nayak_Resume.pdf" download="Advit_Umesh_Nayak_Resume.pdf" class="btn btn-primary">Download PDF</a>
     </div>
   </div>
 </div>
@@ -911,7 +912,7 @@ footer .flinks a:hover{color:var(--text);}
 <div class="modal-overlay" id="vtuCertModal">
   <div class="modal-box glass">
     <div class="modal-header">
-      <h3>VTU — Introduction to Artificial Intelligence (Elite GOLD)</h3>
+      <h3>VTU — Minor Degree in Artificial Intelligence (Elite GOLD)</h3>
       <button class="modal-close" onclick="closeVtuCertModal()">&times;</button>
     </div>
     <div class="modal-body">
@@ -919,7 +920,7 @@ footer .flinks a:hover{color:var(--text);}
     </div>
     <div class="modal-footer">
       <a href="./Minor%20Degree.pdf" target="_blank" class="btn btn-ghost">View Full Screen</a>
-      <a href="./Minor%20Degree.pdf" download="Advit_Nayak_VTU_AI_Certificate.pdf" class="btn btn-primary">Download PDF</a>
+      <a href="./Minor%20Degree.pdf" download="Advit_Nayak_VTU_Minor_Degree_AI.pdf" class="btn btn-primary">Download PDF</a>
     </div>
   </div>
 </div>
@@ -992,6 +993,7 @@ footer .flinks a:hover{color:var(--text);}
       <div class="about-facts">
         <div><span>Location</span>Ankola, Karnataka, India</div>
         <div><span>College Education</span>Canara Engineering College (Oct 2023 - Present)</div>
+        <div><span>Minor Degree</span>Artificial Intelligence (VTU Elite GOLD)</div>
         <div><span>CGPA</span>8.01 / 10</div>
         <div><span>Pre-University</span>Siddhartha PU College<br><small style="color:var(--dim);font-size:11.5px;">PCM-CS &nbsp;·&nbsp; 2021–2023 &nbsp;·&nbsp; Percentage: 85.06%</small></div>
         <div><span>Spoken Languages</span>English | Hindi | Kannada</div>
@@ -1527,6 +1529,19 @@ footer .flinks a:hover{color:var(--text);}
       <div class="tl-desc">Oct. 2023 – Present | Mangalore, India. Focusing on core software engineering, algorithms, AI integration, and systems design.</div>
     </div>
     <div class="tl-item">
+      <div class="tl-role">Minor Degree in Artificial Intelligence</div>
+      <div class="tl-org">Visvesvaraya Technological University (VTU) · Centre for Online Education (Elite GOLD)</div>
+      <div class="tl-desc">
+        Completed VTU Minor Degree in Artificial Intelligence with Elite GOLD distinction (78%, 3 Credits). Awarded by the Centre for Online Education, VTU Belagavi. Focused on foundational AI paradigms, intelligent agents, heuristic search, problem-solving, and machine learning systems.
+        <div style="margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="openVtuCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            View Minor Degree Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
       <div class="tl-role">Pre-University Course (PCM-CS)</div>
       <div class="tl-org">Siddhartha Pre-University College (Percentage: 85.06%)</div>
       <div class="tl-desc">Jun. 2021 – Mar. 2023 | Bhatkal, Karnataka. Pre-University Course focusing on Physics, Chemistry, Mathematics, and Computer Science.</div>
@@ -1545,10 +1560,10 @@ footer .flinks a:hover{color:var(--text);}
   <h2 class="section-title reveal">Internship Experience.</h2>
   <div class="timeline reveal">
     <div class="tl-item">
-      <div class="tl-role">Finance Research Analyst Intern</div>
-      <div class="tl-org">Edify Equity · Bangalore, India</div>
+      <div class="tl-role">Finance Research Analyst Intern (Remote)</div>
+      <div class="tl-org">Edify Equity · Bangalore, India (Remote)</div>
       <div class="tl-desc">
-        Jul. 2026 – Aug. 2026 | Completed a one-month professional internship program as a Finance Research Analyst. Contributed to financial research, market analytics, and equity evaluation workflows.
+        Jul. 2026 – Aug. 2026 | Completed a one-month remote professional internship program as a Finance Research Analyst. Contributed to financial research, market analytics, and equity evaluation workflows.
         <div style="margin-top: 14px;">
           <a href="javascript:void(0)" onclick="openEdifyCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -1676,8 +1691,8 @@ footer .flinks a:hover{color:var(--text);}
         <div class="cert-icon">
           <img src="./vtu_logo.png" alt="VTU Logo" style="width:80px;height:80px;object-fit:contain;border-radius:50%;">
         </div>
-        <div class="cert-name">An Introduction to Artificial Intelligence</div>
-        <div class="cert-org">VTU — Centre for Online Education (Elite GOLD)</div>
+        <div class="cert-name">Minor Degree in Artificial Intelligence</div>
+        <div class="cert-org">VTU — Centre for Online Education (Elite GOLD · 3 Credits)</div>
       </div>
       <div style="margin-top: 16px; width: 100%;">
         <a href="javascript:void(0)" onclick="openVtuCertModal()" class="btn btn-ghost" style="font-size: 12.5px; padding: 8px 14px; border-radius: 10px; gap: 8px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
@@ -1729,7 +1744,7 @@ footer .flinks a:hover{color:var(--text);}
   <h2 class="section-title reveal">Building in public.</h2>
   <div class="gh-grid reveal">
     <div class="gh-card glass"><div class="gh-num" id="ghRepos" data-count="18">0</div><div class="gh-label">Repositories</div></div>
-    <div class="gh-card glass"><div class="gh-num" id="ghCommits" data-count="420">0</div><div class="gh-label">Commits</div></div>
+    <div class="gh-card glass"><div class="gh-num" id="ghCommits" data-count="151">0</div><div class="gh-label">Contributions</div></div>
     <div class="gh-card glass"><div class="gh-num" id="ghFollowers" data-count="12">0</div><div class="gh-label">Followers</div></div>
     <div class="gh-card glass"><div class="gh-num" id="ghStars" data-count="9">0</div><div class="gh-label">Stars</div></div>
   </div>
@@ -1919,15 +1934,19 @@ function typeLoop(){
 }
 typeLoop();
 
-// ---------- contribution graph mock ----------
+// ---------- contribution graph initial skeleton ----------
 const cg=document.getElementById('contribGraph');
-for(let i=0;i<140;i++){
-  const cell=document.createElement('div');
-  cell.className='contrib-cell';
-  const lvl=Math.random();
-  cell.style.background = lvl>0.85?'#38BDF8':lvl>0.65?'#7B2FFF':lvl>0.4?'rgba(123,47,255,0.4)':'rgba(123,47,255,0.12)';
-  cg.appendChild(cell);
+function renderContribSkeleton() {
+  if (!cg) return;
+  cg.innerHTML = '';
+  for(let i=0; i<160; i++){
+    const cell=document.createElement('div');
+    cell.className='contrib-cell';
+    cell.style.background = 'rgba(123,47,255,0.12)';
+    cg.appendChild(cell);
+  }
 }
+renderContribSkeleton();
 
 // ---------- command palette ----------
 const sections=[["Home","#home"],["About","#about"],["Skills","#skills"],["Projects","#projects"],["Education","#education"],["Internship","#experience"],["Certifications","#certs"],["Achievements","#achievements"],["GitHub","#github"],["Contact","#contact"]];
@@ -2098,48 +2117,88 @@ function rotateQuote() {
 }
 setInterval(rotateQuote, 25000); // Rotates every 25 seconds
 
-// ---------- github api connection ----------
+// ---------- github api connection & live contributions ----------
 async function fetchGitHubStats() {
   const statusEl = document.getElementById('ghStatus');
+  const reposEl = document.getElementById('ghRepos');
+  const commitsEl = document.getElementById('ghCommits');
+  const followersEl = document.getElementById('ghFollowers');
+  const starsEl = document.getElementById('ghStars');
+  const cg = document.getElementById('contribGraph');
+
+  const updateVal = (el, val) => {
+    if (!el || val === undefined || val === null) return;
+    el.dataset.count = val;
+    let cur = parseInt(el.textContent) || 0;
+    if (cur !== val) {
+      const step = Math.max(1, Math.ceil(Math.abs(val - cur) / 20));
+      const increment = val > cur;
+      const t = setInterval(() => {
+        if (increment) {
+          cur += step;
+          if (cur >= val) { cur = val; clearInterval(t); }
+        } else {
+          cur -= step;
+          if (cur <= val) { cur = val; clearInterval(t); }
+        }
+        el.textContent = cur;
+      }, 30);
+    }
+  };
+
   try {
-    const userRes = await fetch('https://api.github.com/users/Advitnayak4311');
-    if (!userRes.ok) throw new Error('Rate limit or user not found');
-    const userData = await userRes.json();
-    
-    const reposRes = await fetch('https://api.github.com/users/Advitnayak4311/repos?per_page=100');
-    if (!reposRes.ok) throw new Error('Repos fetch failed');
-    const reposData = await reposRes.json();
-    
-    const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-    
-    const reposEl = document.getElementById('ghRepos');
-    const followersEl = document.getElementById('ghFollowers');
-    const starsEl = document.getElementById('ghStars');
-    
-    const updateVal = (el, val) => {
-      if (!el) return;
-      el.dataset.count = val;
-      let cur = parseInt(el.textContent) || 0;
-      if (cur !== val) {
-        const step = Math.max(1, Math.ceil(Math.abs(val - cur) / 20));
-        const increment = val > cur;
-        const t = setInterval(() => {
-          if (increment) {
-            cur += step;
-            if (cur >= val) { cur = val; clearInterval(t); }
-          } else {
-            cur -= step;
-            if (cur <= val) { cur = val; clearInterval(t); }
-          }
-          el.textContent = cur;
-        }, 30);
+    // 1. Fetch GitHub user profile & public repositories
+    const [userRes, reposRes] = await Promise.all([
+      fetch('https://api.github.com/users/Advitnayak4311'),
+      fetch('https://api.github.com/users/Advitnayak4311/repos?per_page=100')
+    ]);
+
+    if (userRes.ok) {
+      const userData = await userRes.json();
+      updateVal(reposEl, userData.public_repos);
+      updateVal(followersEl, userData.followers);
+    }
+    if (reposRes.ok) {
+      const reposData = await reposRes.json();
+      const totalStars = reposData.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+      updateVal(starsEl, totalStars);
+    }
+
+    // 2. Fetch live GitHub contribution flow & year total
+    try {
+      const contribRes = await fetch('https://github-contributions-api.jogruber.de/v4/Advitnayak4311?y=last');
+      if (contribRes.ok) {
+        const contribData = await contribRes.json();
+        if (contribData && contribData.total && contribData.total.lastYear !== undefined) {
+          updateVal(commitsEl, contribData.total.lastYear);
+        }
+        if (cg && Array.isArray(contribData.contributions) && contribData.contributions.length > 0) {
+          cg.innerHTML = '';
+          contribData.contributions.forEach(day => {
+            const cell = document.createElement('div');
+            cell.className = 'contrib-cell';
+            cell.dataset.date = day.date;
+            cell.dataset.count = day.count;
+            cell.title = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
+            if (day.level === 4) {
+              cell.style.background = '#38BDF8';
+            } else if (day.level === 3) {
+              cell.style.background = '#818CF8';
+            } else if (day.level === 2) {
+              cell.style.background = '#7B2FFF';
+            } else if (day.level === 1) {
+              cell.style.background = 'rgba(123, 47, 255, 0.45)';
+            } else {
+              cell.style.background = 'rgba(123, 47, 255, 0.12)';
+            }
+            cg.appendChild(cell);
+          });
+        }
       }
-    };
-    
-    updateVal(reposEl, userData.public_repos);
-    updateVal(followersEl, userData.followers);
-    updateVal(starsEl, totalStars);
-    
+    } catch (cErr) {
+      console.warn('Live contributions fetch error:', cErr);
+    }
+
     if (statusEl) statusEl.textContent = "Live stats connected via GitHub API.";
   } catch (error) {
     console.warn('Error fetching GitHub stats, using fallback:', error);
